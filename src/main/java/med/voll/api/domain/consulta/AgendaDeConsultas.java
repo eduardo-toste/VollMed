@@ -8,6 +8,7 @@ import med.voll.api.domain.paciente.Paciente;
 import med.voll.api.domain.paciente.PacienteRepository;
 import med.voll.api.infra.exception.ValidacaoException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,6 +40,10 @@ public class AgendaDeConsultas {
         validadores.forEach(v -> v.validar(dados));
 
         var medico = escolherMedico(dados);
+        if(medico == null){
+            throw new ValidacaoException("Nao existe medico disponivel para essa data");
+        }
+
         var paciente = pacienteRepository.getReferenceById(dados.idPaciente());
         var consulta = new Consulta(null, medico, paciente, dados.data(), null);
 
