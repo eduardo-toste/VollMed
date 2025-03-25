@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -35,7 +36,7 @@ class MedicoControllerTest {
     @Autowired
     private JacksonTester<DadosDetalhamentoMedico> dadosDetalhamentoMedicoJson;
 
-    @Mock
+    @MockBean
     private MedicoRepository repository;
 
     @Test
